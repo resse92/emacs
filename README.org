@@ -1,0 +1,4 @@
+* how to setting
+#+BEGIN_SRC 
+git clone https://github.com/zhuruliang/emacs.git ~/.emacs.d
+#+END_SRC

@@ -42,3 +42,9 @@
 (use-package zenburn-theme
   :ensure t
   :config (load-theme 'zenburn t))
+(load-theme 'leuven t)
+
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
