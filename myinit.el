@@ -1,10 +1,13 @@
-
 (setq inhibit-starup-message t)
 (setq package-enable-at-startup nil)
 
 (use-package which-key
   :ensure t
   :config (which-key-mode))
+
+(use-package org-bullets
+  :ensure t
+  :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
@@ -16,10 +19,10 @@
 (use-package swiper
   :ensure t
   :bind (("C-s" . swiper)
-         ("C-r" . swiper)
-         ("C-c C-r" . ivy-resume)
-         ("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file))
+	 ("C-r" . swiper)
+	 ("C-c C-r" . ivy-resume)
+	 ("M-x" . counsel-M-x)
+	 ("C-x C-f" . counsel-find-file))
   :config
   (progn
     (ivy-mode 1)
