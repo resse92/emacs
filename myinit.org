@@ -1,0 +1,103 @@
+#+STARTUP overview
+* interface tweaks
+
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-starup-message t)
+(setq package-enable-at-startup nil)
+#+END_SRC
+
+* which-key
+
+#+BEGIN_SRC emacs-lisp
+(use-package which-key
+  :ensure t
+  :config (which-key-mode))
+#+END_SRC
+
+* org-bullets
+
+#+BEGIN_SRC 
+(use-package org-bullets
+  :ensure t
+  :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))) 
+#+END_SRC
+
+* ido
+#+BEGIN_SRC emacs-lisp
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+#+END_SRC
+
+* ace-window
+  jump window in multiple window
+  #+BEGIN_SRC 
+(use-package ace-window
+  :ensure t
+  :init
+  (progn
+    (global-set-key [remap other-window] 'ace-window)
+    (custom-set-faces
+       '(aw-leading-char-face
+       ((t (:inherit ace-jump-face-foreground :height 3.0)))))
+    ))
+  #+END_SRC
+* swiper
+  #+BEGIN_SRC emacs-lisp
+(use-package counsel
+  :ensure t)
+
+(use-package swiper
+  :ensure t
+  :bind (("C-s" . swiper)
+	 ("C-r" . swiper)
+	 ("C-c C-r" . ivy-resume)
+	 ("M-x" . counsel-M-x)
+	 ("C-x C-f" . counsel-find-file))
+  :config
+  (progn
+    (ivy-mode 1)
+    (setq ivy-use-virtual-buffers t)
+    (setq enable-recursive-minibuffers t)
+    (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+    ))
+  #+END_SRC
+
+* avy
+#+BEGIN_SRC emacs-lisp
+;; avy has many splash features
+(use-package avy
+  :ensure t
+  :bind ("M-s" . avy-goto-char))
+#+END_SRC
+
+* company
+  auto-complete package
+#+BEGIN_SRC emacs-lisp
+(use-package company
+  :ensure t
+  :config
+  (progn
+    (add-hook 'after-init-hook 'global-company-mode)))
+#+END_SRC
+* theme
+#+BEGIN_SRC emacs-lisp
+(use-package zenburn-theme
+  :ensure t
+  :config (load-theme 'zenburn t))
+(load-theme 'leuven t)
+#+END_SRC
+
+* Flycheck
+#+BEGIN_SRC emacs-lisp
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
+#+END_SRC
+* other
+#+BEGIN_SRC 
+(use-package org
+  :ensure t)
+#+END_SRC
+
