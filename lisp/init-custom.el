@@ -9,7 +9,7 @@
  '(js2-strict-missing-semi-warning nil)
  '(package-selected-packages
    (quote
-    (exec-path-from-shell js2-mode smartparens org-edna flycheck zenburn-theme which-key use-package try org-bullets counsel company ace-window))))
+    (iedit expand-region popwin js2-refactor web-mode exec-path-from-shell js2-mode smartparens org-edna flycheck zenburn-theme which-key use-package try org-bullets counsel company ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

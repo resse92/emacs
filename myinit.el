@@ -97,6 +97,7 @@
 (setq org-src-fontify-natively t) ;; 设置orgmode 代码高亮
 
 (use-package popwin
+  :ensure t
   :config
   (popwin-mode 1))
 
@@ -113,6 +114,42 @@
   (progn
     (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))))
 
+(defun my-web-mode-indent-setup ()
+  (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
+  (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
+  (setq web-mode-code-indent-offset 2)   ; web-mode, js code in html file
+  )
+(use-package web-mode
+  :ensure t
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+    (add-hook 'web-mode-hook 'my-web-mode-indent-setup)
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-css-indent-offset 2)
+    (setq web-mode-code-indent-offset 2)))
+
+(use-package js2-refactor
+  :ensure t
+  :config
+  (add-hook 'js2-mode-hook #'js2-refactor-mode)
+  (js2r-add-keybindings-with-prefix "C-c RET"))
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (progn
+    (when (memq window-system '(mac ns))
+      (exec-path-from-shell-initialize))))
+
+(use-package expand-region
+  :ensure t
+  :config
+  (global-set-key (kbd "C-=") 'er/expand-region))
+
+(use-package iedit
+  :ensure t)
+
 ;; 当光标在两个括号中间时，显示当前所在括号
 (define-advice show-paren-function (:around (fn) fix-show-paren-function)
   "highlight enclosing parens."
@@ -120,3 +157,9 @@
         (t (save-excursion
             (ignore-errors (backward-up-list))
             (funcall fn)))))
+;; 用于删除win中的换行符^M
+(defun remove-dos-eol ()
+  "Replace DOS eolns CR LF with Unix eolns CR"
+  (interactive)
+  (goto-char (point-min))
+  (while (search-forward "\r" nil t) (replace-match "")))
