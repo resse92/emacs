@@ -11,7 +11,7 @@
   (tool-bar-mode -1) ;; 关闭工具栏
   (global-linum-mode 1) ;; 高亮显示当前行
   (setq initial-frame-alist (quote ((fullscreen . maximized)))) ;; 默认全屏
-
+  (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 #+END_SRC
 
 * which-key
@@ -23,11 +23,10 @@
 #+END_SRC
 
 * org-bullets
-
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
     :ensure t
-    :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))) 
+    :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+END_SRC
 
 * ido
@@ -50,7 +49,7 @@
        ((t (:inherit ace-jump-face-foreground :height 3.0)))))
     ))
   #+END_SRC
-* swiper
+* Swiper
   #+BEGIN_SRC emacs-lisp
 (use-package counsel
   :ensure t)
@@ -71,7 +70,7 @@
     ))
   #+END_SRC
 
-* avy
+* Avy
 #+BEGIN_SRC emacs-lisp
 ;; avy has many splash features
 (use-package avy
@@ -79,7 +78,7 @@
   :bind ("M-s" . avy-goto-char))
 #+END_SRC
 
-* company
+* Company
   auto-complete package
 #+BEGIN_SRC emacs-lisp
 (use-package company
@@ -88,7 +87,7 @@
   (progn
     (add-hook 'after-init-hook 'global-company-mode)))
 #+END_SRC
-* theme
+* Theme
 #+BEGIN_SRC emacs-lisp
 (use-package zenburn-theme
   :ensure t
@@ -148,8 +147,22 @@ sudo pip install virtualenv
     :config
     (popwin-mode 1))
 #+END_SRC
+* Smartparens
+#+BEGIN_SRC emacs-lisp
+  (use-package smartparens
+    :ensure t
+    :config
+    (smartparens-global-mode t)
+    ;; 在emacs-lisp中，单引号不成双出现
+    (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil))
+#+END_SRC
 * other
-#+BEGIN_SRC 
-(use-package org
-  :ensure t)
+#+BEGIN_SRC emacs-lisp
+  ;; 当光标在两个括号中间时，显示当前所在括号
+  (define-advice show-paren-function (:around (fn) fix-show-paren-function)
+    "highlight enclosing parens."
+    (cond ((looking-at-p "\\s(") (funcall fn))
+          (t (save-excursion
+              (ignore-errors (backward-up-list))
+              (funcall fn)))))
 #+END_SRC

@@ -9,6 +9,7 @@
 (tool-bar-mode -1) ;; 关闭工具栏
 (global-linum-mode 1) ;; 高亮显示当前行
 (setq initial-frame-alist (quote ((fullscreen . maximized)))) ;; 默认全屏
+(add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 
 (use-package which-key
   :ensure t
@@ -98,3 +99,10 @@
 (use-package popwin
   :config
   (popwin-mode 1))
+
+(define-advice show-paren-function (:around (fn) fix-show-paren-function)
+  "highlight enclosing parens."
+  (cond ((looking-at-p "\\s(") (funcall fn))
+        (t (save-excursion
+            (ignore-errors (backward-up-list))
+            (funcall fn)))))
