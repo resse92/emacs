@@ -3,11 +3,12 @@
 (setq package-enable-at-startup nil)
 (setq inhibit-startup-message t) ;; 关闭启动画面
 (setq make-backup-files nil) ;; 关闭自动备份
+(setq auto-save-default nil) ;; 关闭自动保存
 (set-face-attribute 'default nil :height 160) ;; 设置默认字体
 (global-linum-mode 1) ;; 打开行数
 (tool-bar-mode -1) ;; 关闭工具栏
 (global-linum-mode 1) ;; 高亮显示当前行
-(setq initial-frame-alist (quote ((fullscreen . maximized))))
+(setq initial-frame-alist (quote ((fullscreen . maximized)))) ;; 默认全屏
 
 (use-package which-key
   :ensure t
@@ -93,3 +94,7 @@
 ;; org-mode 相关
 (require 'org)
 (setq org-src-fontify-natively t) ;; 设置orgmode 代码高亮
+
+(use-package popwin
+  :config
+  (popwin-mode 1))
