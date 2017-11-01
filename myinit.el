@@ -45,9 +45,24 @@
 (use-package zenburn-theme
   :ensure t
   :config (load-theme 'zenburn t))
-(load-theme 'leuven t)
 
 (use-package flycheck
   :ensure t
   :init
   (global-flycheck-mode t))
+
+(use-package jedi
+  :ensure t
+  :init
+  (add-hook 'python-mode-hook 'jedi:setup)
+  (add-hook 'python-mode-hook 'jedi:ac-setup))
+
+(use-package elpy
+  :ensure t
+  :config
+  (elpy-enable))
+
+(use-package yasnippet
+  :ensure t
+  :init
+  (yas-global-mode 1))
