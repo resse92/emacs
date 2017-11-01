@@ -100,6 +100,20 @@
   :config
   (popwin-mode 1))
 
+(use-package smartparens
+  :ensure t
+  :config
+  (smartparens-global-mode t)
+  ;; 在emacs-lisp中，单引号不成双出现
+  (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil))
+
+(use-package js2-mode
+  :ensure t
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))))
+
+;; 当光标在两个括号中间时，显示当前所在括号
 (define-advice show-paren-function (:around (fn) fix-show-paren-function)
   "highlight enclosing parens."
   (cond ((looking-at-p "\\s(") (funcall fn))

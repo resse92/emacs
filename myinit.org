@@ -156,6 +156,24 @@ sudo pip install virtualenv
     ;; 在emacs-lisp中，单引号不成双出现
     (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil))
 #+END_SRC
+* Javascript Env
+** js2mode
+    #+BEGIN_SRC emacs-lisp
+      (use-package js2-mode
+        :ensure t
+        :config
+        (progn
+          (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))))
+    #+END_SRC
+* exec-path-from-shell
+  #+BEGIN_SRC emacs-lisp
+    (use-package exec-path-from-shell
+      :ensure t
+      :config
+      (progn
+        (when (memq window-system '(mac ns))
+          (exec-path-from-shell-initialize))))
+  #+END_SRC
 * other
 #+BEGIN_SRC emacs-lisp
   ;; 当光标在两个括号中间时，显示当前所在括号
