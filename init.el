@@ -7,7 +7,8 @@
 
 ;; 设置melpa中国源
 (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
-                         ("melpa" . "http://elpa.emacs-china.org/melpa/")))
+                         ("melpa" . "http://elpa.emacs-china.org/melpa/")
+			 ("org" . "http://elpa.emacs-china.org/org/")))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -25,3 +26,4 @@
 (org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org"))
 (setq custom-file (expand-file-name "lisp/init-custom.el" user-emacs-directory)) ;; 把custom group file放到另外一个文件
 (load-file custom-file)
+

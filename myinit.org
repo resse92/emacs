@@ -80,7 +80,7 @@ which-key-mode
 #+END_SRC
 
 * Company
-  auto-complete package
+n  auto-complete package
 #+BEGIN_SRC emacs-lisp
 (use-package company
   :ensure t
@@ -162,10 +162,14 @@ sudo pip install virtualenv
 ** js2mode
     #+BEGIN_SRC emacs-lisp
       (use-package js2-mode
-        :ensure t
-        :config
-        (progn
-          (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))))
+	:ensure t
+	:config
+	(progn
+	  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+	  (setq-default js2-basic-offset 2)
+	  (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+	  (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
+	  (add-to-list 'interpreter-mode-alist '("node" . js2-jsx-mode))))
     #+END_SRC 
 ** web-mode
     #+BEGIN_SRC emacs-lisp
@@ -192,6 +196,14 @@ sudo pip install virtualenv
         (add-hook 'js2-mode-hook #'js2-refactor-mode)
         (js2r-add-keybindings-with-prefix "C-c RET"))
     #+END_SRC
+** vue-mode
+   #+BEGIN_SRC emacs-lisp
+     (use-package vue-mode
+       :ensure t
+       :config
+       (progn
+	 (add-to-list 'auto-mode-alist '("\\.wpy\\'" . vue-mode))))
+   #+END_SRC
 * exec-path-from-shell
   #+BEGIN_SRC emacs-lisp
     (use-package exec-path-from-shell

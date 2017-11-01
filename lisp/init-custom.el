@@ -4,9 +4,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company-minimum-prefix-length 2)
+ '(js-indent-first-init t)
+ '(js-indent-level 2)
  '(js2-mode-show-parse-errors nil)
  '(js2-mode-show-strict-warnings nil)
  '(js2-strict-missing-semi-warning nil)
+ '(js2r-prefer-let-over-var t)
  '(package-selected-packages
    (quote
     (iedit expand-region popwin js2-refactor web-mode exec-path-from-shell js2-mode smartparens org-edna flycheck zenburn-theme which-key use-package try org-bullets counsel company ace-window))))

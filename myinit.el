@@ -1,4 +1,3 @@
-
 (setq inhibit-starup-message t)
 (setq package-enable-at-startup nil)
 (setq inhibit-startup-message t) ;; 关闭启动画面
@@ -39,10 +38,10 @@
 (use-package swiper
   :ensure t
   :bind (("C-s" . swiper)
-         ("C-r" . swiper)
-         ("C-c C-r" . ivy-resume)
-         ("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file))
+	 ("C-r" . swiper)
+	 ("C-c C-r" . ivy-resume)
+	 ("M-x" . counsel-M-x)
+	 ("C-x C-f" . counsel-find-file))
   :config
   (progn
     (ivy-mode 1)
@@ -112,7 +111,11 @@
   :ensure t
   :config
   (progn
-    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))))
+    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+    (setq-default js2-basic-offset 2)
+    (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+    (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
+    (add-to-list 'interpreter-mode-alist '("node" . js2-jsx-mode))))
 
 (defun my-web-mode-indent-setup ()
   (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
@@ -134,6 +137,12 @@
   :config
   (add-hook 'js2-mode-hook #'js2-refactor-mode)
   (js2r-add-keybindings-with-prefix "C-c RET"))
+
+(use-package vue-mode
+  :ensure t
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.wpy\\'" . vue-mode))))
 
 (use-package exec-path-from-shell
   :ensure t
