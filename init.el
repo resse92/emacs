@@ -1,3 +1,6 @@
+;;; init.el --- Summary: 配置文件
+;;; Commentary: 初始化，调用myinit.org
+;;; code:
 (require 'package)
 (setq package-enable-at-startup nil)
 (package-initialize)
@@ -10,19 +13,16 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(global-linum-mode 1)
-(tool-bar-mode -1)
 (use-package try
   :ensure t)
-(setq inhibit-startup-message t) ;; 关闭启动画面
-(setq make-backup-files nil) ;; 关闭自动备份
-(set-face-attribute 'default nil :height 160) ;; 设置默认字体
+
 (org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org"))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(company-minimum-prefix-length 2)
  '(package-selected-packages
    (quote
     (org-edna flycheck zenburn-theme which-key use-package try org-bullets counsel company ace-window))))
@@ -31,5 +31,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0)))))
 (put 'upcase-region 'disabled nil)

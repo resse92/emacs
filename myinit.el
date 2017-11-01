@@ -1,5 +1,13 @@
+
 (setq inhibit-starup-message t)
 (setq package-enable-at-startup nil)
+(setq inhibit-startup-message t) ;; 关闭启动画面
+(setq make-backup-files nil) ;; 关闭自动备份
+(set-face-attribute 'default nil :height 160) ;; 设置默认字体
+(global-linum-mode 1) ;; 打开行数
+(tool-bar-mode -1) ;; 关闭工具栏
+(global-linum-mode 1) ;; 高亮显示当前行
+(setq initial-frame-alist (quote ((fullscreen . maximized))))
 
 (use-package which-key
   :ensure t
@@ -13,16 +21,26 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
+(use-package ace-window
+  :ensure t
+  :init
+  (progn
+    (global-set-key [remap other-window] 'ace-window)
+    (custom-set-faces
+       '(aw-leading-char-face
+       ((t (:inherit ace-jump-face-foreground :height 3.0)))))
+    ))
+
 (use-package counsel
   :ensure t)
 
 (use-package swiper
   :ensure t
   :bind (("C-s" . swiper)
-	 ("C-r" . swiper)
-	 ("C-c C-r" . ivy-resume)
-	 ("M-x" . counsel-M-x)
-	 ("C-x C-f" . counsel-find-file))
+         ("C-r" . swiper)
+         ("C-c C-r" . ivy-resume)
+         ("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file))
   :config
   (progn
     (ivy-mode 1)
@@ -71,3 +89,7 @@
   :ensure t
   :init
   (global-undo-tree-mode))
+
+;; org-mode 相关
+(require 'org)
+(setq org-src-fontify-natively t) ;; 设置orgmode 代码高亮

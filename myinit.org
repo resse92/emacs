@@ -1,9 +1,16 @@
 #+STARTUP overview
 * interface tweaks
-
 #+BEGIN_SRC emacs-lisp
-(setq inhibit-starup-message t)
-(setq package-enable-at-startup nil)
+  (setq inhibit-starup-message t)
+  (setq package-enable-at-startup nil)
+  (setq inhibit-startup-message t) ;; 关闭启动画面
+  (setq make-backup-files nil) ;; 关闭自动备份
+  (set-face-attribute 'default nil :height 160) ;; 设置默认字体
+  (global-linum-mode 1) ;; 打开行数
+  (tool-bar-mode -1) ;; 关闭工具栏
+  (global-linum-mode 1) ;; 高亮显示当前行
+  (setq initial-frame-alist (quote ((fullscreen . maximized))))
+
 #+END_SRC
 
 * which-key
@@ -31,7 +38,7 @@
 
 * ace-window
   jump window in multiple window
-  #+BEGIN_SRC 
+  #+BEGIN_SRC emacs-lisp
 (use-package ace-window
   :ensure t
   :init
@@ -128,9 +135,14 @@ sudo pip install virtualenv
     :init
     (global-undo-tree-mode))
 #+END_SRC
+* Org
+#+BEGIN_SRC emacs-lisp
+  ;; org-mode 相关
+  (require 'org)
+  (setq org-src-fontify-natively t) ;; 设置orgmode 代码高亮
+#+END_SRC
 * other
 #+BEGIN_SRC 
 (use-package org
   :ensure t)
 #+END_SRC
-
