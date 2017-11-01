@@ -66,3 +66,8 @@
   :ensure t
   :init
   (yas-global-mode 1))
+
+(use-package undo-tree
+  :ensure t
+  :init
+  (global-undo-tree-mode))
