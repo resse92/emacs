@@ -159,6 +159,17 @@
 (use-package iedit
   :ensure t)
 
+(use-package org-page
+  :ensure t
+  :config
+  (progn
+    (setq op/repository-directory "~/Documents/myblog/")   ;; the repository location
+    (setq op/site-domain "http://your.personal.site.com/")         ;; your domain
+;;; the configuration below you should choose one, not both
+    (setq op/personal-disqus-shortname "your_disqus_shortname")    ;; your disqus commenting system
+    (setq op/hashover-comments t)                  ;; activate hashover self-hosted comment system
+    ))
+
 ;; 当光标在两个括号中间时，显示当前所在括号
 (define-advice show-paren-function (:around (fn) fix-show-paren-function)
   "highlight enclosing parens."
