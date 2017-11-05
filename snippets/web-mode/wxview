@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: wxview
+# key: wxview
+# --
+<view>$0</view>$1

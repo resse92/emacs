@@ -12,7 +12,7 @@
  '(js2r-prefer-let-over-var t)
  '(package-selected-packages
    (quote
-    (org-page iedit expand-region popwin js2-refactor web-mode exec-path-from-shell js2-mode smartparens org-edna flycheck zenburn-theme which-key use-package try org-bullets counsel company ace-window))))
+    (nginx-mode org-page iedit expand-region popwin js2-refactor web-mode exec-path-from-shell js2-mode smartparens org-edna flycheck zenburn-theme which-key use-package try org-bullets counsel company ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

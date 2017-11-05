@@ -170,6 +170,9 @@
     (setq op/hashover-comments t)                  ;; activate hashover self-hosted comment system
     ))
 
+(use-package nginx-mode
+  :ensure t)
+
 ;; 当光标在两个括号中间时，显示当前所在括号
 (define-advice show-paren-function (:around (fn) fix-show-paren-function)
   "highlight enclosing parens."

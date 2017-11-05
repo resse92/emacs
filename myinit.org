@@ -238,6 +238,11 @@ sudo pip install virtualenv
 	(setq op/hashover-comments t)                  ;; activate hashover self-hosted comment system
 	))
   #+END_SRC
+* Nginx-mode
+  #+BEGIN_SRC emacs-lisp
+    (use-package nginx-mode
+      :ensure t)
+  #+END_SRC
 * other
 #+BEGIN_SRC emacs-lisp
   ;; 当光标在两个括号中间时，显示当前所在括号
