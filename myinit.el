@@ -6,7 +6,7 @@
 (set-face-attribute 'default nil :height 160) ;; 设置默认字体
 (global-linum-mode 1) ;; 打开行数
 (tool-bar-mode -1) ;; 关闭工具栏
-(global-linum-mode 1) ;; 高亮显示当前行
+(global-hl-line-mode t) ;; 高亮显示当前行
 (setq initial-frame-alist (quote ((fullscreen . maximized)))) ;; 默认全屏
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 
@@ -61,14 +61,35 @@
   (progn
     (add-hook 'after-init-hook 'global-company-mode)))
 
+(use-package company-tern
+  :ensure t
+  :config
+  (progn
+    (add-to-list 'company-backends 'company-tern)
+    (add-hook 'js2-mode-hook (lambda ()
+			       (tern-mode)))
+    (define-key tern-mode-keymap (kbd "M-.") nil)
+    (define-key tern-mode-keymap (kbd "M-,") nil)))
+
 (use-package zenburn-theme
   :ensure t
   :config (load-theme 'zenburn t))
 
+(use-package atom-one-dark-theme
+  :ensure t
+  :config (load-theme 'atom-one-dark t))
+
+;; 安装flycheck
 (use-package flycheck
   :ensure t
   :init
   (global-flycheck-mode t))
+
+;; 安装flycheck-less支持
+(use-package flymake-less
+  :ensure t
+  :config
+  (add-hook 'less-css-mode-hook 'flymake-less-load))
 
 (use-package jedi
   :ensure t
@@ -114,8 +135,7 @@
     (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
     (setq-default js2-basic-offset 2)
     (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
-    (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
-    (add-to-list 'interpreter-mode-alist '("node" . js2-jsx-mode))))
+    (add-hook 'js2-mode-hook #'js2-imenu-extras-mode)))
 
 (defun my-web-mode-indent-setup ()
   (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
@@ -127,6 +147,7 @@
   :config
   (progn
     (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
     (add-hook 'web-mode-hook 'my-web-mode-indent-setup)
     (setq web-mode-markup-indent-offset 2)
     (setq web-mode-css-indent-offset 2)
@@ -143,6 +164,22 @@
   :config
   (progn
     (add-to-list 'auto-mode-alist '("\\.wpy\\'" . vue-mode))))
+
+(use-package less-css-mode
+  :ensure t
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.less\\'" . less-css-mode))
+    ;; 这边没生效，需要调整
+    (add-hook 'less-css-mode-hook (lambda () (set (make-local-variable 'css-indent-offset) 2)))))
+
+(use-package xref-js2
+  :ensure t
+  :config
+  (progn
+    (define-key js-mode-map (kbd "M-.") nil)
+    (add-hook 'js2-mode-hook (lambda ()
+			       (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))))
 
 (use-package exec-path-from-shell
   :ensure t
@@ -168,9 +205,19 @@
 ;;; the configuration below you should choose one, not both
     (setq op/personal-disqus-shortname "your_disqus_shortname")    ;; your disqus commenting system
     (setq op/hashover-comments t)                  ;; activate hashover self-hosted comment system
+    (setq op/site-main-title "zhuruliang")
+    (setq op/site-sub-title "I'm a noob, I need to learn! 菜鸟，学特么的！")
+    (setq op/personal-github-link "https://www.github.com/zhuruliang/")
+    (setq op/theme 'org-page-theme-kactus)
     ))
 
 (use-package nginx-mode
+  :ensure t)
+
+(use-package projectile
+  :ensure t)
+
+(use-package projectile-speedbar
   :ensure t)
 
 ;; 当光标在两个括号中间时，显示当前所在括号
