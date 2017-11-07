@@ -3,6 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(company-idle-delay 1)
  '(company-minimum-prefix-length 2)
  '(css-indent-offset 2)
  '(custom-safe-themes
@@ -18,8 +19,7 @@
  '(op/theme (quote kd_mdo))
  '(package-selected-packages
    (quote
-    (nginx-mode org-page iedit expand-region popwin js2-refactor web-mode exec-path-from-shell js2-mode smartparens org-edna flycheck zenburn-theme which-key use-package try org-bullets counsel company ace-window))
-    (company-tern projectile-speedbar sr-speedbar sr-sppedbar projectile flymake-less less-css-mode atom-one-dark-theme solarized solarized-theme dracula-theme org-page iedit expand-region popwin js2-refactor web-mode exec-path-from-shell js2-mode smartparens org-edna flycheck zenburn-theme which-key use-package try org-bullets counsel company ace-window))
+    (nginx-mode org-page iedit expand-region popwin js2-refactor web-mode exec-path-from-shell js2-mode smartparens org-edna flycheck zenburn-theme which-key use-package try org-bullets counsel company ace-window)))
  '(sr-speedbar-max-width 60)
  '(sr-speedbar-right-side t))
 (custom-set-faces
