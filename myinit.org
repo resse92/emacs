@@ -13,6 +13,7 @@
     (global-hl-line-mode t) ;; 高亮显示当前行
     (setq initial-frame-alist (quote ((fullscreen . maximized)))) ;; 默认全屏
     (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
+    (setq truncate-lines nil)
   #+END_SRC
 
 * which-key
@@ -161,6 +162,12 @@ sudo pip install virtualenv
   ;; org-mode 相关
   (require 'org)
   (setq org-src-fontify-natively t) ;; 设置orgmode 代码高亮
+  (setq org-latex-pdf-process '("xelatex -shell-escape -interaction nonstopmode %f"
+				"xelatex -shell-escape -interaction nonstopmode %f")) ;; 默认使用latex导出pdf，但是不支持中文，这里使导出时使用xelatex
+
+  (setq org-html-doctype "html5") ;; 下面设置导出默认为HTML5
+  (setq org-html-xml-declaration nil) ;; 不生成XML头信息
+  (setq org-html-postamble nil) ;; 默认情况下HTML末尾会有几行信息，这行用来取消
 #+END_SRC
 * Pop-win
 #+BEGIN_SRC emacs-lisp
@@ -287,14 +294,6 @@ sudo pip install virtualenv
     (use-package nginx-mode
       :ensure t)
   #+END_SRC
-* Projectile
-#+BEGIN_SRC emacs-lisp
-  (use-package projectile
-    :ensure t)
-
-  (use-package projectile-speedbar
-    :ensure t)
-#+END_SRC
 * other
 #+BEGIN_SRC emacs-lisp
   ;; 当光标在两个括号中间时，显示当前所在括号
