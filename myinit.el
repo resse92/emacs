@@ -91,11 +91,12 @@
   :config
   (add-hook 'less-css-mode-hook 'flymake-less-load))
 
-(use-package jedi
+(use-package company-jedi
   :ensure t
   :init
-  (add-hook 'python-mode-hook 'jedi:setup)
-  (add-hook 'python-mode-hook 'jedi:ac-setup))
+  (defun my/python-mode-hook ()
+    (add-to-list 'company-backends 'company-jedi))
+  (add-hook 'python-mode-hook 'my/python-mode-hook))
 
 (use-package elpy
   :ensure t
