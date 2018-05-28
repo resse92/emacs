@@ -9,7 +9,7 @@
 (global-hl-line-mode t) ;; 高亮显示当前行
 (setq initial-frame-alist (quote ((fullscreen . maximized)))) ;; 默认全屏
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
-(setq truncate-lines t)
+(setq truncate-lines nil)
 
 (use-package which-key
   :ensure t
@@ -18,6 +18,12 @@
 (use-package org-bullets
   :ensure t
   :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+(use-package org-pomodoro
+  :ensure t)
+
+(setq org-todo-keywords
+      '((sequence "TODO" "DOING" "DONE")))
 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
@@ -123,10 +129,6 @@
 (setq org-html-doctype "html5") ;; 下面设置导出默认为HTML5
 (setq org-html-xml-declaration nil) ;; 不生成XML头信息
 (setq org-html-postamble nil) ;; 默认情况下HTML末尾会有几行信息，这行用来取消
-
-(defun my-org-mode ()
-  (setq truncate-lines t))
-(add-hook 'org-mode-hook 'my-org-mode)
 
 (use-package popwin
   :ensure t

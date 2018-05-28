@@ -24,11 +24,17 @@ which-key-mode
     :config (which-key-mode))
   #+END_SRC
 
-* org-bullets
+* org-mode
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
     :ensure t
     :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+  (use-package org-pomodoro
+    :ensure t)
+
+  (setq org-todo-keywords
+	'((sequence "TODO" "DOING" "DONE")))
 #+END_SRC
 
 * ido

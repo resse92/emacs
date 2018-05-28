@@ -3,7 +3,7 @@
 ;;; code:
 (require 'package)
 (setq package-enable-at-startup nil)
-(package-initialize)
+;; (package-initialize)
 
 ;; 设置melpa中国源
 (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
