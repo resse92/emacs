@@ -10,6 +10,7 @@
 (setq initial-frame-alist (quote ((fullscreen . maximized)))) ;; 默认全屏
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 (setq truncate-lines nil)
+(define-coding-system-alias 'UTF-8 'utf-8)
 
 (use-package which-key
   :ensure t
