@@ -23,6 +23,13 @@
 					    ("zrl" "zhuruliang")
 					    ))
 
+;; set backuo files to one dictionary
+;; (setq backup-directory-alist
+;;       `(("." . , (concat user-emacs-directory "backups"))))
+;; disable backup
+(setq backup-inhibited t)
+(setq auto-save-default nil)
+
 (org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org"))
 (setq custom-file (expand-file-name "lisp/init-custom.el" user-emacs-directory)) ;; 把custom group file放到另外一个文件
 (load-file custom-file)
