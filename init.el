@@ -15,6 +15,8 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+(package-initialize)
+
 (use-package try
   :ensure t)
 
